@@ -15,7 +15,7 @@ class MaterialAdminAsset extends AssetBundle
     ];
     public $js = [
         'js/materialize.min.js',
-        'js/sortable.min.js',
+        // 'js/sortable.min.js',
         'js/admin.js',
     ];
     public $depends = [

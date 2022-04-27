@@ -14,7 +14,9 @@
       "yiisoft/yii2": "~2.0.0",
       "uraankhayayaal/yii2-sortable": "*",
       "uraankhayayaal/yii2-materializecomponents": "*",
-      "uraankhayayaal/yii2-redactor": "*"
+      "uraankhayayaal/yii2-redactor": "*",
+      "it-yakutia/yii2-rbac": "*",
+      "it-yakutia/yii2-setting": "*"
     },
     "extra": {
       "bootstrap": "ityakutia\\materialadmin\\Bootstrap"
