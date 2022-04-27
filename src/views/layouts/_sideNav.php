@@ -23,6 +23,7 @@ use yii\helpers\Url;
         </ul>
     </li>
     
+    <?= $this->render('@backend/views/layout/_sidenav'); ?>
 
     <?php if(Yii::$app->user->can("banner") || Yii::$app->user->can("page") || Yii::$app->user->can("news_category") || Yii::$app->user->can("news")) { ?>
         <li><a class="subheader grey-text"><i class="material-icons grey-text tiny">public</i> <?= Yii::t('app', 'Публикации')?></a></li>
