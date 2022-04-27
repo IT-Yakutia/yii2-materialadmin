@@ -57,6 +57,11 @@ html body footer {
 html body header nav {
   background-color: #054761;
 }
+@media only screen and (min-width: 993px) {
+  html body header nav .breadcrumb.truncate {
+    display: inline;
+  }
+}
 html body nav {
   height: 42px;
   background-color: #054761;
