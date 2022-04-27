@@ -1,0 +1,218 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("Montserrat-Regular.ttf");
+}
+@font-face {
+    font-family: "Montserrat";
+    src: url("Montserrat-Bold.ttf");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Montserrat";
+    src: url("Montserrat-Regular.ttf");
+    font-style: italic, oblique;
+}
+@font-face {
+    font-family: "Montserrat";
+    src: url("Montserrat-Bold.ttf");
+    font-weight: bold;
+    font-style: italic, oblique;
+}
+
+@company-primary-color: #054761;
+.company-primary-color{
+    background-color: @company-primary-color;
+}
+@company-akcent-color: #054761;
+.company-akcent-color{
+    background-color: @company-akcent-color;
+}
+@company-grey-color: #5f5f5f;
+.company-grey-color{
+    background-color: @company-grey-color;
+}
+@company-sidenav-bg: #035f45;
+@company-sidenav-header: #cccccc;
+@company-sidenav-active-color: #054761;
+.company-sidenav-active-color{
+    background-color: @company-sidenav-active-color;
+}
+
+html{
+    font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        font-family: Montserrat;
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        header, main, footer {
+            padding-left: 300px;
+            @media only screen and (max-width : 992px) {
+                padding-left: 0;
+            }
+        }
+        header{
+            nav{
+                background-color: @company-akcent-color;
+            }
+        }
+
+        nav{
+            height: 42px;
+            background-color: @company-primary-color;
+            .brand-logo {
+                padding: 0 0 0 7px;
+                position: relative;
+                display: block;
+                font-size: 1.4rem;
+                @media only screen and (max-width : 992px) {
+                    left: 0;
+                    -webkit-transform: none;
+                    transform: none;
+                }
+            }
+        }
+        
+        nav,
+        nav .sidenav-trigger,
+        nav i,
+        nav [class^="mdi-"],
+        nav [class*="mdi-"],
+        nav i.material-icons {
+            line-height: 42px;
+        }
+        @media only screen and (min-width: 601px){
+            nav,
+            nav .nav-wrapper i,
+            nav a.sidenav-trigger,
+            nav a.sidenav-trigger i {
+                height: 42px;
+                line-height: 42px;
+            }
+        }
+
+        .sidenav{
+            background-color: @company-sidenav-bg;
+            &.sidenav-fixed{
+                padding-bottom: 250px;
+            }
+            .collapsible-body{
+                background-color: @company-primary-color;
+            }
+            .subheader{
+                color: @company-sidenav-header;
+            }
+            li{
+                >ul{
+                    &.collapsible{
+                        background-color: @company-primary-color;
+                        .collapsible-body > ul:not(.collapsible) > li.active{
+                            background-color: @company-sidenav-active-color;
+                        }
+                    }
+                }
+                >a{
+                    color: white;
+                    > i.material-icons {
+                        color: white;
+                    }
+                }
+                &.active{
+                    background-color: @company-sidenav-active-color;
+                }
+                &.logo{
+                    a{
+                        padding-top: 20px;
+                        padding-bottom: 10px;
+                        height: 120px;
+                        text-align: center;
+                        background-image: url(../images/logo_nav.png);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: calc(100% - 32px);
+                        img{
+                            width: auto;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-footer{
+            background-color: @company-akcent-color;
+            .footer-copyright{
+                padding: 0;
+            }
+        }
+
+        &.login{
+            background: rgb(52,79,129);
+            background: radial-gradient(circle, @company-akcent-color 0%, @company-akcent-color 35%, rgba(18,36,69,1) 100%);
+            header, main, footer{
+                padding-left: 0px;
+            }
+        }
+
+        .change-img{
+            position: relative;
+            display: block;
+        }
+        .change-img:after{
+            content: " ";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0);
+        }
+        .change-img:hover:after{
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .chip .action {
+            cursor: pointer;
+            float: left;
+            font-size: 16px;
+            line-height: 32px;
+            padding-right: 8px;
+        }
+        b, strong {
+            font-weight: bolder;
+        }
+
+        .btn, .btn-large, .btn-small{
+            background-color: #5390df;
+            &:hover {
+                background-color: #1b6fdd;
+            }
+        }
+
+        .row{
+            &.flexboxes{
+                display: flex;
+                flex-wrap: wrap;
+                .col{
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1 0 auto;
+                    .card{
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1 0 auto;
+                        .card-content{
+                            flex: 1 0 auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

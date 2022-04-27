@@ -1,0 +1,28 @@
+{
+    "name": "it-yakutia/yii2-materialadmin",
+    "description": "Material Admin module for Yii2",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "extension", "materialadmin"],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Ayaal Kaplin",
+        "email": "uraankhayayaal@gmail.com"
+      }
+    ],
+    "require": {
+      "yiisoft/yii2": "~2.0.0",
+      "uraankhayayaal/yii2-sortable": "*",
+      "uraankhayayaal/yii2-materializecomponents": "*",
+      "uraankhayayaal/yii2-redactor": "*"
+    },
+    "extra": {
+      "bootstrap": "ityakutia\\materialadmin\\Bootstrap"
+    },
+    "autoload": {
+      "psr-4": {
+        "ityakutia\\materialadmin\\": "src"
+      }
+    }
+  }
+  
