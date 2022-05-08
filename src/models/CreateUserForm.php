@@ -3,7 +3,6 @@
 namespace ityakutia\materialadmin\models;
 
 use Yii;
-use yii\base\InvalidArgumentException;
 use common\models\User;
 
 class CreateUserForm extends \yii\base\Model
@@ -52,6 +51,5 @@ class CreateUserForm extends \yii\base\Model
 		}
 
 		return $user->getFirstErrors();
-			//echo var_dump($user->errors);
 	}
 }

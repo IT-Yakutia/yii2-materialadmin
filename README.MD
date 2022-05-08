@@ -23,17 +23,26 @@ to the require section of your `composer.json` file.
 
 Usage
 -----
-Once the extension is installed, simply add in your `backend` config:
+Once the extension is installed, simply set application id in your `backend` config:
 
 ```php
+return [
+    'id' => 'backend',
     ...
-    'layoutPath' => '@vendor/it-yakutia/yii2-materialadmin/src/views/layouts',
-    'components' => [
-        ...
-    ],
+];
 ```
 
-Once the extension is installed, use this `SiteController` for `backend`:
+and in `frontend` config:
+
+```php
+return [
+    'id' => 'frontend',
+    ...
+];
+```
+
+Use this `SiteController` for `backend`:
+
 ```php
 /**
  * Site controller
@@ -98,24 +107,6 @@ class SiteController extends Controller
         return $this->redirect(['/materialadmin/profile/login']);
     }
 }
-```
-
-Once the extension is installed, simply add in your `console` config:
-
-```php
-    'controllerMap' => [
-        ...
-        'faker' => [
-            'class' => \ityakutia\materialadmin\commands\FakerController::class,
-        ],
-        'migrate' => [
-            'class' => MigrateController::class,
-            'migrationPath' => [
-                ...
-                '@ityakutia/materialadmin/migrations',
-            ],
-        ],
-    ]
 ```
 
 create your custom navitems for `@backend/views/layout/_sidenav`:

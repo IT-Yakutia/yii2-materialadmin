@@ -8,11 +8,18 @@ use Yii;
 use yii\console\ExitCode;
 use yii\helpers\Console;
 
+/**
+ * Add Users and Roles to user
+ */
 class FakerController extends \yii\console\Controller
 {
-    /*
-     * php yii faker/add-admin "+79990000000" example@gmail.com
-     */
+	/**
+	 * Create new User
+	 * @param $username
+	 * @param $email
+	 * @param $password
+	 * @return int
+	 */
     public function actionAddAdmin($username, $email, $password = null): int {
 
         if(YII_ENV !== 'dev') {
@@ -38,6 +45,12 @@ class FakerController extends \yii\console\Controller
 		return ExitCode::DATAERR;
     }
 
+	/**
+	 * Assing Role to User
+	 * @param $email
+	 * @param $roleName
+	 * @return int
+	 */
     public function actionAssign($email, $roleName): int {
 
 	    if(YII_ENV !== 'dev') {

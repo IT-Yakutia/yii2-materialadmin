@@ -16,7 +16,8 @@
       "uraankhayayaal/yii2-materializecomponents": "*",
       "uraankhayayaal/yii2-redactor": "*",
       "it-yakutia/yii2-rbac": "*",
-      "it-yakutia/yii2-setting": "*"
+      "it-yakutia/yii2-setting": "*",
+      "npm-asset/sortablejs": "^1.6.1"
     },
     "extra": {
       "bootstrap": "ityakutia\\materialadmin\\Bootstrap"
@@ -25,6 +26,11 @@
       "psr-4": {
         "ityakutia\\materialadmin\\": "src"
       }
-    }
-  }
-  
+    },
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://asset-packagist.org"
+      }
+    ]
+}
