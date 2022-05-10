@@ -2,12 +2,14 @@
 
 namespace ityakutia\materialadmin\controllers;
 
-use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\ErrorAction;
 use ityakutia\materialadmin\models\Profile;
 use common\models\LoginForm;
+use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\Controller;
+use yii\web\ErrorAction;
+use yii\web\Response;
 
 /**
  * Class ProfileController
@@ -15,8 +17,10 @@ use common\models\LoginForm;
  */
 class ProfileController extends Controller
 {
-
-    public function behaviors()
+	/**
+	 * @return array[]
+	 */
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -29,17 +33,23 @@ class ProfileController extends Controller
                     ],
                     [
                         'actions' => ['login'],
-                        'allow' => true,
+                        'allow' => true
                     ],
                 ],
             ],
+	        'verbs' => [
+		        'class' => VerbFilter::class,
+		        'actions' => [
+			        'logout' => ['post'],
+		        ],
+	        ],
         ];
     }
 
     /**
      * @return array
      */
-    public function actions()
+    public function actions(): array
     {
         return [
             'error' => [
@@ -98,7 +108,7 @@ class ProfileController extends Controller
     /**
      * Login action.
      *
-     * @return string
+     * @return string|Response
      */
     public function actionLogin()
     {
@@ -121,7 +131,7 @@ class ProfileController extends Controller
     /**
      * Logout action.
      *
-     * @return string
+     * @return string|Response
      */
     public function actionLogout()
     {

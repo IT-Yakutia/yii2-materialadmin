@@ -16,15 +16,23 @@
       "uraankhayayaal/yii2-materializecomponents": "*",
       "uraankhayayaal/yii2-redactor": "*",
       "it-yakutia/yii2-rbac": "*",
-      "it-yakutia/yii2-setting": "*"
-    },
-    "extra": {
-      "bootstrap": "ityakutia\\materialadmin\\Bootstrap"
+      "it-yakutia/yii2-setting": "*",
+      "npm-asset/sortablejs": "^1.6.1"
     },
     "autoload": {
       "psr-4": {
         "ityakutia\\materialadmin\\": "src"
       }
+    },
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://asset-packagist.org"
+      }
+    ],
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
     }
-  }
-  
+}

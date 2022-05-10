@@ -1,87 +1,87 @@
 <?php
 
-
 namespace ityakutia\materialadmin\commands;
 
-
+use ityakutia\materialadmin\models\CreateUserForm;
 use common\models\User;
-use Faker\Factory;
 use Yii;
-use yii\console\Controller;
-use yii\db\Expression;
+use yii\console\ExitCode;
+use yii\helpers\Console;
 
-class FakerController extends Controller
+/**
+ * Add Users and Roles to user
+ */
+class FakerController extends \yii\console\Controller
 {
-
-    public $faker;
-
-    public function init()
-    {
-        $this->faker = Factory::create();
-        parent::init();
-    }
-
-    /*
-     * php yii faker/add-admin "+79990000000" example@gmail.com
-     */
-    public function actionAddAdmin($username, $email, $password = '000000') {
+	/**
+	 * Create new User
+	 * @param $username
+	 * @param $email
+	 * @param $password
+	 * @return int
+	 */
+    public function actionAddAdmin($username, $email, $password = null): int {
 
         if(YII_ENV !== 'dev') {
-            return false;
+			$this->stdout("This method allow only dev mode.\n", Console::FG_RED);
+            return ExitCode::USAGE;
         }
 
-        $isUserExists = User::find()->where(['email' => $email])->exists();
-        if($isUserExists) {
-           return false;
-        }
+	    $form = new CreateUserForm([
+		    'username' => $username,
+		    'email' => $email,
+		    'password' => $password
+	    ]);
 
-        $user = new User([
-            'username' => $username,
-            'email' => $email,
-            'password' => $password,
-            'created_at' => time(),
-            'updated_at' => time(),
-            'status' => 10,
-        ]);
-        $user->generateAuthKey();
-        if($user->save())
-            echo $user->username . "\n";
-        else {
-            echo var_dump($user->errors);
-            echo "\n";
-        }
+		if (($result = $form->createUser()) instanceof User) {
+			$this->stdout("New user created.\n\n", Console::FG_GREEN);
+			$this->stdout("Username: {$form->username}\n", Console::FG_GREEN);
+			$this->stdout("Email: {$form->email}\n", Console::FG_GREEN);
+			$this->stdout("Password: {$form->password}\n", Console::FG_GREEN);
+			return ExitCode::OK;
+		}
 
-        return true;
+		$this->stdout("Error creating user:\n\n - " . implode("\n - ", $result) . "\n", Console::FG_RED);
+		return ExitCode::DATAERR;
     }
 
-    public function actionAssign($email, $roleName) {
+	/**
+	 * Assing Role to User
+	 * @param $email
+	 * @param $roleName
+	 * @return int
+	 */
+    public function actionAssign($email, $roleName): int {
 
-        if(YII_ENV !== 'dev') {
-            echo var_dump("This method allow only dev mode.");
-            echo "\n";
-            return false;
+	    if(YII_ENV !== 'dev') {
+		    $this->stdout("This method allow only dev mode.\n", Console::FG_RED);
+		    return ExitCode::USAGE;
+	    }
+
+	    $user = User::find()->where(['email' => $email])->one();
+        if(!$user instanceof User) {
+	        $this->stdout("The user with email {$email} dose not exist.\n", Console::FG_RED);
+	        return ExitCode::DATAERR;
         }
 
-        $isUserExists = User::find()->where(['email' => $email])->exists();
-        if(!$isUserExists) {
-            echo var_dump("The user with email $email dose not exist.");
-            echo "\n";
-            return false;
-        }
-
-        $user = User::find()->where(['email' => $email])->one();
-        
         $auth = Yii::$app->authManager;
         $role = $auth->getRole($roleName);
 
-        if($role != null || $role != false){
-            $auth->assign($role, $user->id);
-            echo $user->email . " has the role: " . $roleName . " now.\n";
-        } else {
-            echo var_dump("The role with name $role dose not exist.");
-            echo "\n";
-        }
+		if (empty($role)) {
+			$this->stdout("The role with name {$roleName} dose not exist.\n", Console::FG_RED);
+			return ExitCode::DATAERR;
+		}
 
-        return true;
+		try {
+			$auth->assign($role, $user->id);
+			$this->stdout("User {$user->username} ({$user->email}) has the role {$roleName} now.\n", Console::FG_GREEN);
+			return ExitCode::OK;
+		} catch(\yii\db\IntegrityException $exception) {
+			$this->stdout("User {$user->username} ({$user->email}) already have role {$roleName}.\n", Console::FG_RED);
+		} catch(\Throwable $exception) {
+			$this->stdout("Error assigned role: {$exception->getMessage()}\n", Console::FG_RED);
+		}
+
+		return ExitCode::UNSPECIFIED_ERROR;
     }
 }
