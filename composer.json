@@ -19,9 +19,6 @@
       "it-yakutia/yii2-setting": "*",
       "npm-asset/sortablejs": "^1.6.1"
     },
-    "extra": {
-      "bootstrap": "ityakutia\\materialadmin\\Bootstrap"
-    },
     "autoload": {
       "psr-4": {
         "ityakutia\\materialadmin\\": "src"
@@ -32,5 +29,10 @@
         "type": "composer",
         "url": "https://asset-packagist.org"
       }
-    ]
+    ],
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    }
 }

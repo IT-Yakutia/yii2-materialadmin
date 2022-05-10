@@ -76,6 +76,10 @@ use yii\helpers\Url;
     <li class="<?= (Yii::$app->controller->module->id=='gallery' && Yii::$app->controller->id=='back-album')?'active':''; ?>"><a class="waves-effect waves-teal" href="<?= Url::toRoute('/gallery/back-album/index') ?>"><i class="material-icons">burst_mode</i> <?= Yii::t('app', 'Галерея') ?></a></li>
     <?php } ?>
 
+    <?php if(Yii::$app->user->can("gallery")) { ?>
+        <li class="<?= (Yii::$app->controller->module->id=='gallery' && Yii::$app->controller->id=='back-video')?'active':''; ?>"><a class="waves-effect waves-teal" href="<?= Url::toRoute('/gallery/back-video/index') ?>"><i class="material-icons">burst_mode</i> <?= Yii::t('app', 'Видео') ?></a></li>
+    <?php } ?>
+
     <?php if(Yii::$app->user->can("document")) { ?>
     <li class="<?= (Yii::$app->controller->module->id=='document')?'active':''; ?>"><a class="waves-effect waves-teal" href="<?= Url::toRoute('/document/back-category/index') ?>"><i class="material-icons">insert_drive_file</i> <?= Yii::t('app', 'Документы НПА') ?></a></li>
     <?php } ?>

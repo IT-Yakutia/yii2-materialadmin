@@ -2,9 +2,7 @@
 
 namespace ityakutia\materialadmin\assets;
 
-use yii\web\AssetBundle;
-
-class MaterialAdminAsset extends AssetBundle
+class MaterialAdminAsset extends \yii\web\AssetBundle
 {
     public $sourcePath = '@ityakutia/materialadmin/assets/src/';
 
@@ -19,6 +17,6 @@ class MaterialAdminAsset extends AssetBundle
         'js/admin.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        \yii\web\YiiAsset::class,
     ];
 }

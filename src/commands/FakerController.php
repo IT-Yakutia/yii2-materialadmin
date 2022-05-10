@@ -2,8 +2,8 @@
 
 namespace ityakutia\materialadmin\commands;
 
-use common\models\User;
 use ityakutia\materialadmin\models\CreateUserForm;
+use common\models\User;
 use Yii;
 use yii\console\ExitCode;
 use yii\helpers\Console;

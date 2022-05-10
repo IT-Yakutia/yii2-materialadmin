@@ -2,13 +2,13 @@
 
 namespace ityakutia\materialadmin\controllers;
 
+use ityakutia\materialadmin\models\Profile;
+use common\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\ErrorAction;
-use ityakutia\materialadmin\models\Profile;
-use common\models\LoginForm;
 use yii\web\Response;
 
 /**
@@ -17,7 +17,6 @@ use yii\web\Response;
  */
 class ProfileController extends Controller
 {
-
 	/**
 	 * @return array[]
 	 */
