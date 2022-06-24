@@ -28,6 +28,11 @@ class ProfileController extends Controller
                         'roles' => ['@'],
                     ],
                     [
+                        'actions' => ['change', 'index'],
+                        'allow' => false,
+                        'roles' => ['doNotChangeCredentials'],
+                    ],
+                    [
                         'actions' => ['login'],
                         'allow' => true,
                     ],

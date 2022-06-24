@@ -14,8 +14,10 @@ use yii\helpers\Url;
             <a class="collapsible-header waves-effect waves-blue white-text tooltipped" data-position="right" data-tooltip="Нажмите чтобы открыть"><i class="material-icons white-text">account_circle</i><b style="font-size: 1.6rem;"><?= Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username ?></b><br/><i class="material-icons white-text">mail</i><?= Yii::$app->user->isGuest ? null : Yii::$app->user->identity->email ?></a>
                 <div class="collapsible-body">
                     <ul class="">
+                        <?php if (!Yii::$app->user->can('doNotChangeCredentials')) { ?>
                         <li class="<?= (Yii::$app->controller->module->id === 'materialadmin' && Yii::$app->controller->id === 'profile' && Yii::$app->controller->action->id === 'index') ? 'active' : '' ?>"><a class="waves-effect waves-blue white-text" href="<?= Url::toRoute('/materialadmin/profile/index') ?>"><i class="material-icons white-text">person</i> Личный кабинет</a></li>
                         <li class="<?= (Yii::$app->controller->module->id === 'materialadmin' && Yii::$app->controller->id === 'profile' && Yii::$app->controller->action->id === 'change') ? 'active' : '' ?>"><a class="waves-effect waves-blue white-text" href="<?= Url::toRoute('/materialadmin/profile/change') ?>"><i class="material-icons white-text">security</i> Изменить пароль</a></li>
+                        <?php } ?>
                         <li><?= Html::a('Выйти <i class="material-icons white-text">exit_to_app</i>', ['/materialadmin/profile/logout'], ['data' => ['method' => 'post'], 'class' => 'waves-effect waves-blue white-text']) ?></li>
                     </ul>
                 </div>
