@@ -3,10 +3,13 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+$isCustomNavLogo = isset(Yii::$app->params['materialadmin_module']) ? isset(Yii::$app->params['materialadmin_module']['custom_assets']) ? isset(Yii::$app->params['materialadmin_module']['custom_assets']['logo_sidenav']) : false : false;
+$customNavLogoPath = $isCustomNavLogo ? Yii::$app->params['materialadmin_module']['custom_assets']['logo_sidenav'] : null;
+
 ?>
 
 <ul id="slide-out" class="sidenav sidenav-fixed">
-    <li class="logo"><a href="<?= Url::home() ?>"></a></li>
+    <li class="logo"><a href="<?= Url::home() ?>" style="<?= $isCustomNavLogo ? ('background-image: url('.$customNavLogoPath.');') : null; ?>"></a></li>
 
     <li class="no-padding <?= (Yii::$app->controller->module->id === 'materialadmin' && Yii::$app->controller->id === 'profile')?'active':'' ?>">
         <ul class="collapsible collapsible-accordion white-text">

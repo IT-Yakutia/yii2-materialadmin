@@ -15,7 +15,7 @@ use yii\widgets\Breadcrumbs;
                     'itemTemplate' => "{link}",
                     'activeItemTemplate' => '<a class="breadcrumb truncate">{link}</a>',
                     'homeLink' => [
-                        'label' => '<img src="' . $adminBundle->baseUrl . '/img/logo.png" alt="admin icon" height="15">',
+                        'label' => '<img src="' . ($isCustomFaviconLogo ? $customFaviconLogoPath : ($adminBundle->baseUrl.'/img/logo.png')) . '" alt="admin icon" height="15">',
                         'url' => Url::home(),
                         'encode' => false,
                         'class' => ' hide-on-med-and-down tooltipped',

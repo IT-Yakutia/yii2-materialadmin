@@ -9,6 +9,10 @@ use uraankhayayaal\materializecomponents\alert\Toast;
 
 $adminBundle = MaterialAdminAsset::register($this);
 
+$isCustomFaviconLogo = isset(Yii::$app->params['materialadmin_module']) ? isset(Yii::$app->params['materialadmin_module']['custom_assets']) ? isset(Yii::$app->params['materialadmin_module']['custom_assets']['logo_favicon']) : false : false;
+$customFaviconLogoPath = $isCustomFaviconLogo ? Yii::$app->params['materialadmin_module']['custom_assets']['logo_favicon'] : null;
+
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -20,9 +24,9 @@ $adminBundle = MaterialAdminAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= $adminBundle->baseUrl; ?>/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= $adminBundle->baseUrl; ?>/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= $adminBundle->baseUrl; ?>/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= $isCustomFaviconLogo ? $customFaviconLogoPath : ($adminBundle->baseUrl.'/favicon/apple-touch-icon.png'); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $isCustomFaviconLogo ? $customFaviconLogoPath : ($adminBundle->baseUrl.'/favicon/favicon-32x32.png'); ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $isCustomFaviconLogo ? $customFaviconLogoPath : ($adminBundle->baseUrl.'/favicon/favicon-16x16.png'); ?>">
     <link rel="manifest" href="<?= $adminBundle->baseUrl; ?>/favicon/site.webmanifest">
     <?php $this->head() ?>
 </head>
@@ -31,6 +35,8 @@ $adminBundle = MaterialAdminAsset::register($this);
 
     <?= $this->render('_topBar', [
         'adminBundle' => $adminBundle,
+        'isCustomFaviconLogo' => $isCustomFaviconLogo,
+        'customFaviconLogoPath' => $customFaviconLogoPath,
     ]); ?>
     <?= $this->render('_sideNav'); ?>
 

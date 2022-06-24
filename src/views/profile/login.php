@@ -13,9 +13,13 @@ $adminBundle = MaterialAdminAsset::register($this);
 
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
+
+$isCustomLoginLogo = isset(Yii::$app->params['materialadmin_module']) ? isset(Yii::$app->params['materialadmin_module']['custom_assets']) ? isset(Yii::$app->params['materialadmin_module']['custom_assets']['logo_login']) : false : false;
+$customLoginLogoPath = $isCustomLoginLogo ? Yii::$app->params['materialadmin_module']['custom_assets']['logo_login'] : null;
+
 ?>
 <div class="site-login">
-    <h1 class="white-text center-align" title="<?= Html::encode($this->title) ?>"><img src="<?= $adminBundle->baseUrl; ?>/img/logo_nav.png" width="500" alt="Управление сайтом" style="vertical-align: middle;"></h1>
+    <h1 class="white-text center-align" title="<?= Html::encode($this->title) ?>"><img src="<?= $isCustomLoginLogo ? $customLoginLogoPath : ($adminBundle->baseUrl.'/img/logo_nav.png'); ?>" width="500" alt="Управление сайтом" style="vertical-align: middle;"></h1>
     <div class="row">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
             <div class="card-panel z-depth-5">

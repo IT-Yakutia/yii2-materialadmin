@@ -134,3 +134,15 @@ use yii\helpers\Url;
     <li class="<?= (Yii::$app->controller->module->id=='costom_module' && Yii::$app->controller->id=='back')?'active':''; ?>"><a class="waves-effect waves-teal" href="<?= Url::toRoute('/costom_module/back/index') ?>"><i class="material-icons">pageview</i> <?= Yii::t('app', 'Мой модуль') ?></a></li>
 <?php } ?>
 ```
+
+
+Setting custom logos, simply add in your `backend` params:
+```
+'materialadmin_module' => [
+    'custom_assets' => [
+        'logo_favicon' => '/admin/images/logo_favicon.png',
+        'logo_sidenav' => '/admin/images/logo_sidenav.png',
+        'logo_login' => '/admin/images/logo_login.png',
+    ],
+],
+```
