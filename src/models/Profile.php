@@ -39,6 +39,9 @@ class Profile extends Model
             ['username', 'unique', 'targetClass' => User::class, 'message' => 'Этот логин занят.', 'filter' => ['!=', 'username', $this->oldUsername], 'on' => self::SCENARIO_PROFILE],
             ['username', 'string', 'min' => 2, 'max' => 255, 'on' => self::SCENARIO_PROFILE],
 
+            ['email', 'unique', 'targetClass' => User::class, 'message' => 'Этот email занят.', 'filter' => ['!=', 'email', $this->oldEmail], 'on' => self::SCENARIO_PROFILE],
+            ['email', 'email', 'on' => self::SCENARIO_PROFILE],
+
             ['old_password', 'validatePassword'],
             [['password', 'password_repeat'], 'required', 'on' => self::SCENARIO_PWD],
             ['password', 'string', 'min' => 6, 'on' => self::SCENARIO_PWD],
