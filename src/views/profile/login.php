@@ -19,7 +19,11 @@ $customLoginLogoPath = $isCustomLoginLogo ? Yii::$app->params['materialadmin_mod
 
 ?>
 <div class="site-login">
-    <h1 class="white-text center-align" title="<?= Html::encode($this->title) ?>"><img src="<?= $isCustomLoginLogo ? $customLoginLogoPath : ($adminBundle->baseUrl.'/img/logo_nav.png'); ?>" width="500" alt="Управление сайтом" style="vertical-align: middle;"></h1>
+    <div class="row">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <h1 class="white-text center-align" title="<?= Html::encode($this->title) ?>"><img src="<?= $isCustomLoginLogo ? $customLoginLogoPath : ($adminBundle->baseUrl.'/img/logo_nav.png'); ?>" alt="Управление сайтом" style="vertical-align: middle; max-width: 100%;"></h1>
+        </div>
+    </div>
     <div class="row">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
             <div class="card-panel z-depth-5">
