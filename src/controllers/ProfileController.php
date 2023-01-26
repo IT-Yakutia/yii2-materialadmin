@@ -55,6 +55,7 @@ class ProfileController extends Controller
 
     public function actionIndex()
     {
+        $this->layout = Yii::$app->params['materialadmin']['layouts']['main'] ?? 'main';
         $model = new Profile();
         $model->scenario = Profile::SCENARIO_PROFILE;
         $user = Yii::$app->user->identity;
@@ -78,6 +79,7 @@ class ProfileController extends Controller
 
     public function actionChange()
     {
+        $this->layout = Yii::$app->params['materialadmin']['layouts']['main'] ?? 'main';
         $model = new Profile();
         $model->scenario = Profile::SCENARIO_PWD;
         $user = Yii::$app->user->identity;
@@ -107,7 +109,7 @@ class ProfileController extends Controller
      */
     public function actionLogin()
     {
-        $this->layout = 'empty';
+        $this->layout = Yii::$app->params['materialadmin']['layouts']['empty'] ?? 'empty';
 
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
