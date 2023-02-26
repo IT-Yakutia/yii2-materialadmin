@@ -14,6 +14,7 @@ class MaterialAdminAsset extends AssetBundle
         'css/admin.css',
     ];
     public $js = [
+        'js/jquery.lazy.min.js',
         'js/materialize.min.js',
         // 'js/sortable.min.js',
         'js/admin.js',
